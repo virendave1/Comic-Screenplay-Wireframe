@@ -1,0 +1,149 @@
+ <html>
+ <head>
+<link rel="stylesheet" type="text/css" href="C:\Users\viren\Desktop\webapplication\bootstrap-4.5.2-dist\css\bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="C:\Users\viren\Desktop\webapplication\bootstrap-4.5.2-dist\js\bootstrap.min.js" ></script>
+ <style>
+ .container-fluid{
+ height:90px;
+ background-color:black;
+ }
+ .col-md-7 h3{
+ margin-top:30px;
+ text-align:left;
+ color:White;
+ }
+ .col-md-3{
+ margin-left:120px;
+ margin-top:30px;
+ height:500px;
+ }
+  .col-md-4{
+ margin-left:10px;
+ margin-top:30px;
+ height:500px;
+ }
+ .col-md-3 h5{
+ color:black;
+ }
+ .col-md-4 h5{
+ color:black;
+ }
+ form{
+ margin-top:25px;
+ }
+ hr{
+ border-color:#273239;
+ width:372px;
+ border-width:1.5px;
+ }
+  .col-md-4 hr{
+ border-color:#273239;
+ width:502px;
+ border-width:1.5px;
+ margin-top:88px;
+ }
+ input{
+ box-size:10px;
+ }
+ button{
+ border-radius:4px;
+ width:100px;
+ height:30px;
+ margin-top:35px;
+ color:grey;
+ border-left:none;
+  border-top:none;
+ background-color:white;
+ }
+ 
+.button:active {
+  transform: translateY(4px);
+}
+ .col-md-3 p{
+ margin-top:25px;
+ color:black;
+ padding-bottom:8px;
+ font-weight:bold;
+ font-size:13px;
+ }
+
+#output{
+text-align:left;
+height:485px;
+}
+.vertical{
+border-right:3px solid black;
+height:680px;
+}
+img{
+height:70px;
+margin-left:25px;
+width:60px;
+margin-top:10px;
+}
+</style>
+ </head>
+ <body>
+ <div class="container-fluid">
+ <div class="row">
+ <div class="col-md-5">
+  <img src="logo.jpg"></img>
+ </div>
+ <div class="col-md-7">
+ <h3>FILE Analyzer</h3>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3">
+<h5>1. Upload File </h5>
+<form>
+ <p>(Accepted File Extension are .txt, .csv and all program code files.)</p> 
+ <hr align="left"></hr>
+ <br>
+ <br>
+<input type="file" accept="text/*,.cpp,.html,.php,.py,.js,.css,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" id="File">
+ </form>
+</div>
+<div class="vertical"></div>
+<div class="col-md-4">
+<h5>2. Selected File Data</h5>
+<hr align="left"></hr>
+<pre id="output"></pre> 
+</div>
+<div class="vertical"></div>
+<div class="col-md-3 ">
+<h5>File Properties</h5>
+<pre><p>For Uploaded File Properties Click on Check:</p></pre>
+<hr align="left"></hr>
+<p id="f1"></p>
+<p id="pi"></p>
+<button class="button" type="button" onclick="fileproperties();filefunction();changeColor();run()">Check</button>
+</div>
+</div>
+<script>
+function filefunction() {
+  var f = document.getElementById("File").value;
+  document.getElementById("f1").innerHTML = "File Path :"+f;
+}
+
+document.getElementById('File') 
+            .addEventListener('change', function() {   
+            var fr=new FileReader(); 
+            fr.onload=function(){ 
+                document.getElementById('output') 
+                        .textContent=fr.result; }        
+            fr.readAsText(this.files[0]); 
+        })
+function fileproperties(){
+var inpFiles = document.getElementById('File');
+for (var i = 0; i < inpFiles.files.length; ++i) {
+
+    var size = inpFiles.files.item(i).size;
+	document.getElementById("pi").innerHTML="Size of File :" +size;
+}
+}
+</script>
+</body>
+</html>
